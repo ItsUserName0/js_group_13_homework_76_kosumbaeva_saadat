@@ -1,15 +1,13 @@
 <mat-card>
   <mat-card-content>
-    <form #f="ngForm" fxLayout="column">
+    <form #f="ngForm" fxLayout="column" (ngSubmit)="sendMessage(); f.resetForm()">
       <mat-form-field appearance="outline">
         <mat-label>Author</mat-label>
         <input name="author"
                matInput
                required
                ngModel>
-        <mat-error>
-          Error text
-        </mat-error>
+        <mat-error>Enter author name!</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Message</mat-label>
@@ -17,16 +15,17 @@
                matInput
                required
                ngModel>
-        <mat-error>
-          Error text
-        </mat-error>
+        <mat-error>Enter your message!</mat-error>
       </mat-form-field>
       <div>
         <button type="submit"
                 mat-raised-button
                 color="primary"
-                [disabled]="f.invalid"
-        >Send</button>
+                [disabled]="f.invalid || isUploading"
+        >
+          <span *ngIf="!isUploading">Send</span>
+        <mat-spinner *ngIf="isUploading" [diameter]="30"></mat-spinner>
+        </button>
       </div>
     </form>
   </mat-card-content>

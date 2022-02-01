@@ -1,9 +1,9 @@
-<mat-card>
+<mat-card *ngIf="message">
   <mat-card-content>
     <div fxLayout="row" fxLayoutAlign="flex-start center">
-      <h4>Author</h4>&nbsp;
-      <span>(datetime)</span>
+      <h4>{{ message.author }}</h4>&nbsp;
+      <span>({{ message.datetime }})</span>
     </div>
-    <p>message text</p>
+    <p>{{ message.message }}</p>
   </mat-card-content>
 </mat-card>

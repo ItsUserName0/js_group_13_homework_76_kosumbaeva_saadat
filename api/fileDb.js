@@ -15,8 +15,8 @@ module.exports = {
     getMessages() {
         return data.slice(-30);
     },
-    getMessage(date) {
-        const message = data.find(message => message.date === date);
+    getMessage(datetime) {
+        const message = data.find(message => message.datetime === datetime);
         if (!message) {
             return [];
         } else {
@@ -25,7 +25,7 @@ module.exports = {
     },
     addMessage(message) {
         message.id = nanoid();
-        message.date = new Date().toISOString();
+        message.datetime = new Date().toISOString();
         data.push(message);
         return this.save();
     },

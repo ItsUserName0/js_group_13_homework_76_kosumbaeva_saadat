@@ -1,3 +1,5 @@
-<app-message></app-message>
-<app-message></app-message>
-<app-message></app-message>
+<ng-container *ngIf="!isFetching">
+  <app-message *ngFor="let message of messages" [message]="message"></app-message>
+</ng-container>
+
+<mat-spinner *ngIf="isFetching" [diameter]="40"></mat-spinner>
